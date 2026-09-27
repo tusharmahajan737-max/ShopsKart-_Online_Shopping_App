@@ -1,0 +1,1171 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Global foundation: shared tokens and application shell */
+:root {
+    --purple: #6d28d9;
+    --purple-dark: #4c1d95;
+    --purple-soft: #f3e8ff;
+    --ink: #241b35;
+    --muted: #70677d;
+    --line: #e8def4;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #fbfaff;
+    color: var(--ink);
+}
+
+#root {
+    min-height: 100vh;
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Navbar.jsx: desktop header, brand, search, and navigation */
+
+.header {
+    display: grid;
+    grid-template-columns: auto minmax(220px, 1fr) auto;
+    align-items: center;
+    gap: 28px;
+    padding: 14px clamp(20px, 5vw, 72px);
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 8px 24px rgba(76, 29, 149, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: max-content;
+}
+
+.brand-mark {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+.Logo {
+    margin: 0;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--purple-dark);
+}
+
+.search-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 0 15px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fdfbff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.search-box:focus-within {
+    border-color: var(--purple);
+    box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.12);
+    background: var(--white);
+}
+
+.search-icon {
+    color: var(--purple);
+    font-size: 1.45rem;
+    line-height: 1;
+}
+
+.search-box input {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 0;
+    border: 0;
+    outline: 0;
+    color: var(--ink);
+    font: inherit;
+    background: transparent;
+}
+
+.Navbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    min-width: 0;
+}
+
+.Navbar a {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 9px 11px;
+    border-radius: 8px;
+    animation: nav-link-slide-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transition: color 0.2s ease, background 0.2s ease, transform 0.25s ease;
+}
+
+.Navbar a:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.Navbar a:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.Navbar a:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.Navbar a:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.Navbar a:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.Navbar a i {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+.Navbar a:hover {
+    color: var(--purple-dark);
+}
+
+.Navbar a.active {
+    color: var(--purple-dark);
+    font-weight: 700;
+}
+
+.Navbar a::after {
+    position: absolute;
+    right: 14px;
+    bottom: 2px;
+    left: 14px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--purple);
+    content: "";
+    opacity: 0;
+    transform: translateX(-110%);
+    transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.Navbar a:hover::after,
+.Navbar a.active::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+/* Product page: Product.jsx and Products_Card.jsx */
+
+.Products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 10px;
+    max-width: 1500px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.product-card-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.product-card {
+    width: 100%;
+    max-width: 280px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-card .card-img-top {
+    height: 260px;
+    padding: 20px;
+    object-fit: contain;
+}
+
+.product-card .card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 18px 20px 20px;
+    text-align: left;
+}
+
+.product-card .card-title {
+    display: -webkit-box;
+    min-height: 48px;
+    margin: 0 0 14px;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.product-card .card-text {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.product-card .card-text:first-of-type {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.product-card .card-text:last-of-type {
+    color: #666;
+    text-transform: capitalize;
+}
+
+.product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.product-actions button {
+    min-width: 0;
+    padding: 10px 8px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.product-actions button:hover {
+    transform: translateY(-1px);
+}
+
+.product-actions button:focus-visible {
+    outline: 3px solid rgba(109, 40, 217, 0.25);
+    outline-offset: 2px;
+}
+
+.add-to-cart {
+    color: var(--purple-dark);
+    background: var(--purple-soft);
+    border-color: #d8b4fe !important;
+}
+
+.add-to-cart:hover {
+    background: #e9d5ff;
+}
+
+.buy-now {
+    color: var(--white);
+    background: var(--purple);
+}
+
+.buy-now:hover {
+    background: var(--purple-dark);
+}
+
+/* Products_Card.jsx: compact two-column product grid on phones */
+@media (max-width: 640px) {
+    .Products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        padding: 16px 12px;
+    }
+    .product-card {
+        max-width: none;
+        min-height: 350px;
+    }
+    .product-card .card-img-top {
+        height: 150px;
+        padding: 12px;
+    }
+    .product-card .card-body {
+        padding: 12px;
+    }
+    .product-card .card-title {
+        min-height: 42px;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        line-height: 1.3;
+    }
+    .product-card .card-text {
+        font-size: 0.82rem;
+    }
+    .product-actions {
+        gap: 5px;
+    }
+    .product-actions button {
+        padding: 9px 4px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Layout.jsx: shared content height between header and footer */
+main {
+    flex: 1;
+    min-height: calc(100vh - 140px);
+}
+
+
+/* Shared content container: pages using the common layout width */
+.container {
+    width: min(1100px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/* Account.jsx: responsive account dashboard */
+.account-page {
+    min-height: 640px;
+    background:
+        radial-gradient(circle at 88% 12%, rgba(216, 180, 254, 0.3), transparent 28%),
+        linear-gradient(180deg, #f9f6ff 0%, #fbfaff 45%, #ffffff 100%);
+}
+
+.account-container {
+    width: min(100% - 32px, 1180px);
+    padding-top: clamp(34px, 5vw, 64px);
+    padding-bottom: clamp(42px, 6vw, 76px);
+}
+
+.account-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.account-heading-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.account-heading h1 {
+    margin: 0 0 8px;
+    color: var(--ink);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+}
+
+.account-heading p:not(.eyebrow) {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.98rem;
+}
+
+.account-shop-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    flex: 0 0 auto;
+    padding: 11px 16px;
+    border: 1px solid #d9c8f5;
+    border-radius: 9px;
+    color: var(--purple-dark);
+    background: var(--white);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.account-shop-link:hover,
+.account-shop-link:focus-visible {
+    border-color: var(--purple);
+    background: var(--purple-soft);
+    transform: translateY(-2px);
+}
+
+.account-settings-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 15px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.account-settings-link:hover,
+.account-settings-link:focus-visible {
+    border-color: #c4a5ef;
+    color: var(--purple-dark);
+    background: var(--white);
+    transform: translateY(-2px);
+}
+
+.account-welcome {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px clamp(20px, 4vw, 36px);
+    border-radius: 16px;
+    color: var(--white);
+    background: linear-gradient(110deg, #4c1d95 0%, #6d28d9 60%, #8b5cf6 100%);
+    box-shadow: 0 18px 40px rgba(76, 29, 149, 0.2);
+}
+
+.account-avatar {
+    display: grid;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    color: #f5d0fe;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 1.3rem;
+}
+
+.account-welcome-copy {
+    flex: 1;
+    min-width: 0;
+}
+
+.account-welcome-label {
+    color: #e9d5ff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.account-welcome h2 {
+    margin: 5px 0 4px;
+    color: var(--white);
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+}
+
+.account-welcome p {
+    margin: 0;
+    color: #ede9fe;
+    font-size: 0.9rem;
+}
+
+.account-welcome .account-action {
+    margin: 0;
+    color: var(--purple-dark);
+    background: var(--white);
+}
+
+.account-welcome .account-action:hover,
+.account-welcome .account-action:focus-visible {
+    color: var(--purple-dark);
+    background: #f5d0fe;
+}
+
+.account-section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 40px 0 16px;
+}
+
+.account-section-heading h2,
+.account-panel-heading h2,
+.account-perks-panel h2 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.account-section-heading span,
+.account-panel-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.account-shortcuts .col-12 {
+    display: flex;
+}
+
+.account-shortcut {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 92px;
+    padding: 15px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: var(--ink);
+    background: var(--white);
+    box-shadow: 0 7px 20px rgba(76, 29, 149, 0.05);
+    text-decoration: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.account-shortcut:hover,
+.account-shortcut:focus-visible {
+    border-color: #c4a5ef;
+    box-shadow: 0 12px 28px rgba(76, 29, 149, 0.12);
+    transform: translateY(-3px);
+}
+
+.account-shortcut > span:nth-child(2) {
+    display: grid;
+    gap: 5px;
+    min-width: 0;
+}
+
+.account-shortcut strong {
+    font-size: 0.9rem;
+}
+
+.account-shortcut small {
+    color: var(--muted);
+    font-size: 0.72rem;
+    line-height: 1.3;
+}
+
+.account-shortcut-icon {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.account-icon-blue { color: #2563eb; background: #eff6ff; }
+.account-icon-pink { color: #db2777; background: #fdf2f8; }
+.account-icon-green { color: #059669; background: #ecfdf5; }
+.account-icon-orange { color: #ea580c; background: #fff7ed; }
+
+.account-chevron {
+    margin-left: auto;
+    color: #a78bca;
+    font-size: 0.7rem;
+}
+
+.account-lower-grid {
+    margin-top: 28px;
+}
+
+.account-panel {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--white);
+    box-shadow: 0 10px 26px rgba(76, 29, 149, 0.06);
+}
+
+.account-orders-panel {
+    height: 100%;
+    padding: 22px;
+}
+
+.account-panel-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #f0eafb;
+}
+
+.account-panel-heading a {
+    color: var(--purple);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.account-empty-state {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 26px 0 4px;
+}
+
+.account-empty-state > div {
+    flex: 1;
+}
+
+.account-empty-icon,
+.account-perks-icon,
+.fa-circle-half-stroke {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 auto;
+    border-radius: 12px;
+    color: var(--purple);
+    background: var(--purple-soft);
+}
+
+.account-empty-state strong {
+    font-size: 0.92rem;
+}
+
+.account-empty-state p,
+.account-perks-panel p {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.account-outline-action {
+    flex: 0 0 auto;
+    padding: 9px 12px;
+    border: 1px solid #d9c8f5;
+    border-radius: 7px;
+    color: var(--purple-dark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.account-outline-action:hover,
+.account-outline-action:focus-visible {
+    color: var(--white);
+    background: var(--purple);
+}
+
+.account-perks-panel {
+    height: 100%;
+    padding: 24px;
+    background: linear-gradient(145deg, #fff 0%, #f8f3ff 100%);
+}
+
+.account-perks-panel h2 {
+    margin-top: 16px;
+}
+
+.account-perks-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+    color: var(--ink);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.account-perks-list i {
+    margin-right: 8px;
+    color: #059669;
+}
+
+/* Account.jsx: stack dashboard controls and panels on phones */
+@media (max-width: 767.98px) {
+    .account-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .account-heading-actions {
+        width: 100%;
+        justify-content: stretch;
+    }
+    .account-heading-actions a {
+        flex: 1;
+    }
+    .account-shop-link {
+        width: 100%;
+        justify-content: center;
+    }
+    .account-welcome {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    .account-welcome-copy {
+        flex-basis: calc(100% - 76px);
+    }
+    .account-welcome .account-action {
+        width: 100%;
+        justify-content: center;
+        margin-top: 4px;
+    }
+    .account-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .account-empty-state {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+    .account-empty-state > div {
+        flex-basis: calc(100% - 60px);
+    }
+    .account-outline-action {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Account.jsx: shared account labels and actions */
+.eyebrow {
+    margin-bottom: 10px;
+    color: var(--purple);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.account-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
+    padding: 12px 28px;
+    border-radius: 8px;
+    color: var(--white);
+    background: var(--purple);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.account-action:hover {
+    color: var(--white);
+    background: var(--purple-dark);
+    transform: translateY(-2px);
+}
+
+section h1 {
+    margin-bottom: 12px;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--purple-dark);
+}
+
+section p {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.theme-select {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.theme-select label {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.theme-select select {
+    width: 220px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+
+.theme-select select:focus {
+    border-color: #333;
+}
+
+/* Footer.jsx: responsive site footer and utility links */
+.site-footer {
+    position: relative;
+    overflow: hidden;
+    color: #f7f1ff;
+    background: linear-gradient(135deg, #24103f 0%, #3b176b 58%, #4c1d95 100%);
+    border-top: 4px solid #c084fc;
+}
+
+.site-footer::after {
+    position: absolute;
+    top: -90px;
+    right: -70px;
+    width: 250px;
+    height: 250px;
+    border: 1px solid rgba(216, 180, 254, 0.18);
+    border-radius: 50%;
+    content: "";
+    box-shadow: 0 0 0 24px rgba(216, 180, 254, 0.04), 0 0 0 48px rgba(216, 180, 254, 0.03);
+}
+
+.footer-container {
+    position: relative;
+    z-index: 1;
+    width: min(100% - 32px, 1280px);
+    padding-top: 58px;
+    padding-bottom: 22px;
+}
+
+.footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+}
+
+.footer-brand-mark {
+    display: inline-grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+    color: #f5d0fe;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 1rem;
+}
+
+.footer-intro,
+.footer-copy {
+    max-width: 340px;
+    margin: 18px 0 0;
+    color: #d9c8f5;
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 9px;
+    margin-top: 24px;
+}
+
+.footer-socials a {
+    display: inline-grid;
+    width: 35px;
+    height: 35px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    color: #ede9fe;
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.footer-socials a:hover,
+.footer-socials a:focus-visible {
+    color: var(--purple-dark);
+    background: var(--white);
+    transform: translateY(-2px);
+}
+
+.footer-heading {
+    margin: 4px 0 18px;
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.footer-links {
+    display: grid;
+    gap: 11px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.footer-links a,
+.footer-legal a,
+.footer-contact {
+    color: #d9c8f5;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible,
+.footer-legal a:hover,
+.footer-legal a:focus-visible,
+.footer-contact:hover,
+.footer-contact:focus-visible {
+    color: var(--white);
+}
+
+.footer-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    color: #f5d0fe;
+    font-weight: 700;
+}
+
+.footer-contact i {
+    font-size: 0.75rem;
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 52px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #c8b6e6;
+    font-size: 0.8rem;
+}
+
+.footer-legal {
+    display: flex;
+    gap: 22px;
+}
+
+/* Navbar.jsx and Footer.jsx: tablet layout adjustments */
+@media (max-width: 1024px) {
+    .header {
+        grid-template-columns: 1fr auto;
+        gap: 12px 20px;
+        padding: 13px clamp(18px, 4vw, 36px);
+    }
+    .search-box {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+    }
+    .Navbar {
+        justify-content: flex-end;
+    }
+}
+
+/* Navbar.jsx and Footer.jsx: phone layout, sticky header, and bottom navigation */
+@media (max-width: 600px) {
+    /* Keep the brand and search available while mobile navigation stays at the bottom. */
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 15;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 12px 14px;
+    }
+    .brand {
+        min-width: 0;
+    }
+    .brand-mark {
+        width: 38px;
+        height: 38px;
+    }
+    .Logo {
+        font-size: 1.3rem;
+    }
+    .Navbar {
+        position: fixed;
+        bottom: 0;
+        inset-inline: 0;
+        z-index: 20;
+        width: 100vw;
+        max-width: 100vw;
+        min-height: 58px;
+        padding: 7px 8px calc(7px + env(safe-area-inset-bottom));
+        border-top: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 -8px 24px rgba(76, 29, 149, 0.12);
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 2px;
+        isolation: isolate;
+        animation: nav-slide-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .Navbar a {
+        position: relative;
+        overflow: hidden;
+        flex: 1;
+        flex-direction: column;
+        gap: 3px;
+        text-align: center;
+        font-size: 0.8rem;
+        transform: translateY(10px);
+        animation: nav-item-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .Navbar a:nth-child(1) {
+        animation-delay: 0.12s;
+    }
+    .Navbar a:nth-child(2) {
+        animation-delay: 0.17s;
+    }
+    .Navbar a:nth-child(3) {
+        animation-delay: 0.22s;
+    }
+    .Navbar a:nth-child(4) {
+        animation-delay: 0.27s;
+    }
+    .Navbar a:nth-child(5) {
+        animation-delay: 0.32s;
+    }
+    .Navbar a::after {
+        position: absolute;
+        right: 18%;
+        bottom: 1px;
+        left: 18%;
+        height: 3px;
+        border-radius: 3px;
+        background: var(--purple);
+        content: "";
+        opacity: 0;
+        transform: scaleX(0);
+        transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .Navbar a.active::after {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    .Navbar a span,
+    .Navbar a i {
+        position: relative;
+        z-index: 1;
+    }
+    .Navbar a i {
+        transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .Navbar a.active i {
+        transform: translateY(-2px) scale(1.08);
+    }
+    .Navbar a i {
+        order: -1;
+        font-size: 1.1rem;
+    }
+    .search-box {
+        grid-row: 2;
+        grid-column: 1;
+    }
+    .app-shell {
+        padding-bottom: 68px;
+    }
+    .container {
+        width: min(100% - 28px, 1100px);
+        padding: 30px 0;
+    }
+    .footer-container {
+        padding-top: 42px;
+    }
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 38px;
+    }
+}
+
+@keyframes nav-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes nav-item-rise {
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Accessibility: respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .Navbar,
+    .Navbar a,
+    .Navbar a::after,
+    .Navbar a i {
+        animation: none;
+        transition: none;
+    }
+    .Navbar a {
+        transform: none;
+    }
+}
+
+/* Navbar.jsx: extra-small phone refinements */
+@media (max-width: 360px) {
+    .Navbar a {
+        font-size: 0.75rem;
+        padding-inline: 2px;
+    }
+    .Navbar a {
+        gap: 4px;
+    }
+    .footer-intro,
+    .footer-copy,
+    .footer-links a,
+    .footer-contact {
+        line-height: 1.5;
+    }
+}
+
+/* Navbar.jsx: desktop search field width */
+@media (min-width: 1025px) {
+    .search-box {
+        width: min(100%, 520px);
+        justify-self: center;
+    }
+}
