@@ -1,16 +1,76 @@
-# React + Vite
+# 🛒 ShopsKart – Online Shopping App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+ShopsKart is a modern and responsive Online Shopping Web Application
+developed using React.js and Vite.
 
-Currently, two official plugins are available:
+The application provides a user-friendly shopping experience with
+product browsing, product categories, product details, shopping cart,
+user authentication pages, and application settings.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+- 🏠 Home Page
+- 🛍️ Product Listing
+- 📦 Product Details
+- 🗂️ Product Categories
+- 🛒 Shopping Cart
+- 👤 Account Management
+- 🔐 Login
+- 📝 Registration
+- 🔑 Password Help
+- ⚙️ Settings
+- 🌙 Dark Mode
+- ☀️ Light Mode
+- 🖥️ System Default Theme
+- 🔎 Search Interface
+- 📱 Responsive Design
+- 🧩 Reusable React Components
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Technologies Used
 
-## Expanding the Oxlint configuration
+- React.js
+- Vite
+- JavaScript
+- HTML5
+- CSS3
+- Bootstrap 5
+- Font Awesome
+- React Router DOM
+- React Hook Form
+- Git & GitHub
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 📂 Project Structure
+
+```text
+ShopsKart/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+├── public/
+│   └── Logo.png
+├── src/
+│   ├── Components/
+│   │   ├── Footer.jsx
+│   │   ├── Layout.jsx
+│   │   ├── Navbar.jsx
+│   │   └── Products_Card.jsx
+│   ├── Pages/
+│   │   ├── Account.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Category.jsx
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Password_Help.jsx
+│   │   ├── Product.jsx
+│   │   ├── Register.jsx
+│   │   └── Settings.jsx
+│   ├── Styles/
+│   │   ├── App.css
+│   │   └── Login.css
+│   ├── App.jsx
+│   └── main.jsx
+├── .gitignore
+├── index.html
+├── package.json
+├── README.md
+└── vite.config.js
