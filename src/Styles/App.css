@@ -2,8 +2,13 @@
     box-sizing: border-box;
 }
 
-/* Global foundation: shared tokens and application shell */
-:root {
+/* ==========================================
+   1. Global Theme Tokens & Variables
+   ========================================== */
+
+/* Light Theme (Default) */
+:root,
+.app-container.light {
     --purple: #6d28d9;
     --purple-dark: #4c1d95;
     --purple-soft: #f3e8ff;
@@ -11,13 +16,38 @@
     --muted: #70677d;
     --line: #e8def4;
     --white: #ffffff;
+    --bg-body: #fbfaff;
+    --bg-card: #ffffff;
+    --bg-input: #fdfbff;
+    --shadow-header: rgba(76, 29, 149, 0.06);
+    --shadow-card: rgba(0, 0, 0, 0.1);
+    --border-card: #ddd;
 }
 
+/* Dark Theme Overrides */
+.app-container.dark {
+    --purple: #a855f7;
+    --purple-dark: #c084fc;
+    --purple-soft: #2e1065;
+    --ink: #f3f4f6;
+    --muted: #9ca3af;
+    --line: #374151;
+    --white: #1f2937;
+    --bg-body: #111827;
+    --bg-card: #1f2937;
+    --bg-input: #374151;
+    --shadow-header: rgba(0, 0, 0, 0.3);
+    --shadow-card: rgba(0, 0, 0, 0.4);
+    --border-card: #374151;
+}
+
+/* Base Body Styles */
 body {
     margin: 0;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #fbfaff;
+    background: var(--bg-body);
     color: var(--ink);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
@@ -30,8 +60,9 @@ body {
     flex-direction: column;
 }
 
-
-/* Navbar.jsx: desktop header, brand, search, and navigation */
+/* ==========================================
+   2. Header & Search Component
+   ========================================== */
 
 .header {
     display: grid;
@@ -39,12 +70,13 @@ body {
     align-items: center;
     gap: 28px;
     padding: 14px clamp(20px, 5vw, 72px);
-    background: var(--white);
+    background: var(--bg-card);
     border-bottom: 1px solid var(--line);
-    box-shadow: 0 8px 24px rgba(76, 29, 149, 0.06);
+    box-shadow: 0 8px 24px var(--shadow-header);
     position: sticky;
     top: 0;
     z-index: 10;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .brand {
@@ -77,14 +109,14 @@ body {
     padding: 0 15px;
     border: 1px solid var(--line);
     border-radius: 10px;
-    background: #fdfbff;
+    background: var(--bg-input);
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .search-box:focus-within {
     border-color: var(--purple);
     box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.12);
-    background: var(--white);
+    background: var(--bg-card);
 }
 
 .search-icon {
@@ -103,6 +135,10 @@ body {
     font: inherit;
     background: transparent;
 }
+
+/* ==========================================
+   3. Navbar Navigation Links
+   ========================================== */
 
 .Navbar {
     display: flex;
@@ -130,25 +166,11 @@ body {
     transition: color 0.2s ease, background 0.2s ease, transform 0.25s ease;
 }
 
-.Navbar a:nth-child(1) {
-    animation-delay: 0.05s;
-}
-
-.Navbar a:nth-child(2) {
-    animation-delay: 0.1s;
-}
-
-.Navbar a:nth-child(3) {
-    animation-delay: 0.15s;
-}
-
-.Navbar a:nth-child(4) {
-    animation-delay: 0.2s;
-}
-
-.Navbar a:nth-child(5) {
-    animation-delay: 0.25s;
-}
+.Navbar a:nth-child(1) { animation-delay: 0.05s; }
+.Navbar a:nth-child(2) { animation-delay: 0.1s; }
+.Navbar a:nth-child(3) { animation-delay: 0.15s; }
+.Navbar a:nth-child(4) { animation-delay: 0.2s; }
+.Navbar a:nth-child(5) { animation-delay: 0.25s; }
 
 .Navbar a i {
     font-size: 1.05rem;
@@ -184,8 +206,9 @@ body {
     transform: translateX(0);
 }
 
-
-/* Product page: Product.jsx and Products_Card.jsx */
+/* ==========================================
+   4. Products Grid & Cards
+   ========================================== */
 
 .Products {
     display: grid;
@@ -193,9 +216,7 @@ body {
     gap: 20px;
     padding: 10px;
     max-width: 1500px;
-    margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px auto;
 }
 
 .product-card-container {
@@ -207,24 +228,26 @@ body {
 .product-card {
     width: 100%;
     max-width: 280px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-card);
+    background-color: var(--bg-card);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px var(--shadow-card);
 }
 
 .product-card .card-img-top {
     height: 260px;
     padding: 20px;
     object-fit: contain;
+    background-color: var(--white);
 }
 
 .product-card .card-body {
@@ -233,6 +256,7 @@ body {
     flex-direction: column;
     padding: 18px 20px 20px;
     text-align: left;
+    color: var(--ink);
 }
 
 .product-card .card-title {
@@ -242,6 +266,7 @@ body {
     font-size: 1.05rem;
     line-height: 1.4;
     overflow: hidden;
+    color: var(--ink);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
@@ -257,7 +282,7 @@ body {
 }
 
 .product-card .card-text:last-of-type {
-    color: #666;
+    color: var(--muted);
     text-transform: capitalize;
 }
 
@@ -293,15 +318,15 @@ body {
 .add-to-cart {
     color: var(--purple-dark);
     background: var(--purple-soft);
-    border-color: #d8b4fe !important;
+    border-color: var(--line) !important;
 }
 
 .add-to-cart:hover {
-    background: #e9d5ff;
+    opacity: 0.9;
 }
 
 .buy-now {
-    color: var(--white);
+    color: #ffffff;
     background: var(--purple);
 }
 
@@ -309,7 +334,7 @@ body {
     background: var(--purple-dark);
 }
 
-/* Products_Card.jsx: compact two-column product grid on phones */
+/* Mobile Product Grid */
 @media (max-width: 640px) {
     .Products {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -345,26 +370,24 @@ body {
     }
 }
 
-/* Layout.jsx: shared content height between header and footer */
+/* ==========================================
+   5. General Layout & Account Dashboard
+   ========================================== */
+
 main {
     flex: 1;
     min-height: calc(100vh - 140px);
 }
 
-
-/* Shared content container: pages using the common layout width */
 .container {
     width: min(1100px, calc(100% - 32px));
     margin: 0 auto;
     padding: 40px 0;
 }
 
-/* Account.jsx: responsive account dashboard */
 .account-page {
     min-height: 640px;
-    background:
-        radial-gradient(circle at 88% 12%, rgba(216, 180, 254, 0.3), transparent 28%),
-        linear-gradient(180deg, #f9f6ff 0%, #fbfaff 45%, #ffffff 100%);
+    background: var(--bg-body);
 }
 
 .account-container {
@@ -407,10 +430,10 @@ main {
     gap: 9px;
     flex: 0 0 auto;
     padding: 11px 16px;
-    border: 1px solid #d9c8f5;
+    border: 1px solid var(--line);
     border-radius: 9px;
     color: var(--purple-dark);
-    background: var(--white);
+    background: var(--bg-card);
     font-size: 0.88rem;
     font-weight: 700;
     text-decoration: none;
@@ -433,7 +456,7 @@ main {
     border: 1px solid var(--line);
     border-radius: 9px;
     color: var(--muted);
-    background: rgba(255, 255, 255, 0.7);
+    background: var(--bg-card);
     font-size: 0.88rem;
     font-weight: 700;
     text-decoration: none;
@@ -442,9 +465,8 @@ main {
 
 .account-settings-link:hover,
 .account-settings-link:focus-visible {
-    border-color: #c4a5ef;
+    border-color: var(--purple);
     color: var(--purple-dark);
-    background: var(--white);
     transform: translateY(-2px);
 }
 
@@ -454,7 +476,7 @@ main {
     gap: 20px;
     padding: 24px clamp(20px, 4vw, 36px);
     border-radius: 16px;
-    color: var(--white);
+    color: #ffffff;
     background: linear-gradient(110deg, #4c1d95 0%, #6d28d9 60%, #8b5cf6 100%);
     box-shadow: 0 18px 40px rgba(76, 29, 149, 0.2);
 }
@@ -487,7 +509,7 @@ main {
 
 .account-welcome h2 {
     margin: 5px 0 4px;
-    color: var(--white);
+    color: #ffffff;
     font-size: clamp(1.2rem, 2vw, 1.55rem);
 }
 
@@ -499,13 +521,12 @@ main {
 
 .account-welcome .account-action {
     margin: 0;
-    color: var(--purple-dark);
-    background: var(--white);
+    color: #4c1d95;
+    background: #ffffff;
 }
 
 .account-welcome .account-action:hover,
 .account-welcome .account-action:focus-visible {
-    color: var(--purple-dark);
     background: #f5d0fe;
 }
 
@@ -547,16 +568,16 @@ main {
     border: 1px solid var(--line);
     border-radius: 12px;
     color: var(--ink);
-    background: var(--white);
-    box-shadow: 0 7px 20px rgba(76, 29, 149, 0.05);
+    background: var(--bg-card);
+    box-shadow: 0 7px 20px var(--shadow-header);
     text-decoration: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .account-shortcut:hover,
 .account-shortcut:focus-visible {
-    border-color: #c4a5ef;
-    box-shadow: 0 12px 28px rgba(76, 29, 149, 0.12);
+    border-color: var(--purple);
+    box-shadow: 0 12px 28px var(--shadow-header);
     transform: translateY(-3px);
 }
 
@@ -586,14 +607,14 @@ main {
     font-size: 1rem;
 }
 
-.account-icon-blue { color: #2563eb; background: #eff6ff; }
-.account-icon-pink { color: #db2777; background: #fdf2f8; }
-.account-icon-green { color: #059669; background: #ecfdf5; }
-.account-icon-orange { color: #ea580c; background: #fff7ed; }
+.account-icon-blue { color: #2563eb; background: rgba(37, 99, 235, 0.12); }
+.account-icon-pink { color: #db2777; background: rgba(219, 39, 119, 0.12); }
+.account-icon-green { color: #059669; background: rgba(5, 150, 105, 0.12); }
+.account-icon-orange { color: #ea580c; background: rgba(234, 88, 12, 0.12); }
 
 .account-chevron {
     margin-left: auto;
-    color: #a78bca;
+    color: var(--muted);
     font-size: 0.7rem;
 }
 
@@ -604,8 +625,9 @@ main {
 .account-panel {
     border: 1px solid var(--line);
     border-radius: 14px;
-    background: var(--white);
-    box-shadow: 0 10px 26px rgba(76, 29, 149, 0.06);
+    background: var(--bg-card);
+    box-shadow: 0 10px 26px var(--shadow-header);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .account-orders-panel {
@@ -619,7 +641,7 @@ main {
     justify-content: space-between;
     gap: 16px;
     padding-bottom: 18px;
-    border-bottom: 1px solid #f0eafb;
+    border-bottom: 1px solid var(--line);
 }
 
 .account-panel-heading a {
@@ -668,7 +690,7 @@ main {
 .account-outline-action {
     flex: 0 0 auto;
     padding: 9px 12px;
-    border: 1px solid #d9c8f5;
+    border: 1px solid var(--line);
     border-radius: 7px;
     color: var(--purple-dark);
     font-size: 0.78rem;
@@ -678,14 +700,14 @@ main {
 
 .account-outline-action:hover,
 .account-outline-action:focus-visible {
-    color: var(--white);
+    color: #ffffff;
     background: var(--purple);
 }
 
 .account-perks-panel {
     height: 100%;
     padding: 24px;
-    background: linear-gradient(145deg, #fff 0%, #f8f3ff 100%);
+    background: var(--bg-card);
 }
 
 .account-perks-panel h2 {
@@ -706,7 +728,7 @@ main {
     color: #059669;
 }
 
-/* Account.jsx: stack dashboard controls and panels on phones */
+/* Mobile Account Section */
 @media (max-width: 767.98px) {
     .account-heading {
         align-items: flex-start;
@@ -754,7 +776,7 @@ main {
     }
 }
 
-/* Account.jsx: shared account labels and actions */
+/* Common Text Elements */
 .eyebrow {
     margin-bottom: 10px;
     color: var(--purple);
@@ -771,7 +793,7 @@ main {
     margin-top: 28px;
     padding: 12px 28px;
     border-radius: 8px;
-    color: var(--white);
+    color: #ffffff;
     background: var(--purple);
     font-weight: 700;
     text-decoration: none;
@@ -779,7 +801,7 @@ main {
 }
 
 .account-action:hover {
-    color: var(--white);
+    color: #ffffff;
     background: var(--purple-dark);
     transform: translateY(-2px);
 }
@@ -797,6 +819,7 @@ section p {
     color: var(--muted);
 }
 
+/* Theme Select Dropdown */
 .theme-select {
     margin-top: 20px;
     display: flex;
@@ -807,23 +830,30 @@ section p {
 .theme-select label {
     font-size: 15px;
     font-weight: 600;
+    color: var(--ink);
 }
 
 .theme-select select {
     width: 220px;
     padding: 10px 12px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--line);
+    background-color: var(--bg-card);
+    color: var(--ink);
     font-size: 14px;
     cursor: pointer;
     outline: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .theme-select select:focus {
-    border-color: #333;
+    border-color: var(--purple);
 }
 
-/* Footer.jsx: responsive site footer and utility links */
+/* ==========================================
+   6. Footer Styles
+   ========================================== */
+
 .site-footer {
     position: relative;
     overflow: hidden;
@@ -856,7 +886,7 @@ section p {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: var(--white);
+    color: #ffffff;
     font-size: 1.45rem;
     font-weight: 800;
     letter-spacing: 0.01em;
@@ -904,14 +934,14 @@ section p {
 
 .footer-socials a:hover,
 .footer-socials a:focus-visible {
-    color: var(--purple-dark);
-    background: var(--white);
+    color: #4c1d95;
+    background: #ffffff;
     transform: translateY(-2px);
 }
 
 .footer-heading {
     margin: 4px 0 18px;
-    color: var(--white);
+    color: #ffffff;
     font-size: 0.85rem;
     font-weight: 800;
     letter-spacing: 0.1em;
@@ -941,7 +971,7 @@ section p {
 .footer-legal a:focus-visible,
 .footer-contact:hover,
 .footer-contact:focus-visible {
-    color: var(--white);
+    color: #ffffff;
 }
 
 .footer-contact {
@@ -978,7 +1008,10 @@ section p {
     gap: 22px;
 }
 
-/* Navbar.jsx and Footer.jsx: tablet layout adjustments */
+/* ==========================================
+   7. Media Queries (Responsive Navbar & Mobile)
+   ========================================== */
+
 @media (max-width: 1024px) {
     .header {
         grid-template-columns: 1fr auto;
@@ -995,9 +1028,7 @@ section p {
     }
 }
 
-/* Navbar.jsx and Footer.jsx: phone layout, sticky header, and bottom navigation */
 @media (max-width: 600px) {
-    /* Keep the brand and search available while mobile navigation stays at the bottom. */
     .header {
         position: sticky;
         top: 0;
@@ -1026,8 +1057,8 @@ section p {
         min-height: 58px;
         padding: 7px 8px calc(7px + env(safe-area-inset-bottom));
         border-top: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.98);
-        box-shadow: 0 -8px 24px rgba(76, 29, 149, 0.12);
+        background: var(--bg-card);
+        box-shadow: 0 -8px 24px var(--shadow-header);
         align-items: stretch;
         justify-content: space-between;
         gap: 2px;
@@ -1045,21 +1076,11 @@ section p {
         transform: translateY(10px);
         animation: nav-item-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
-    .Navbar a:nth-child(1) {
-        animation-delay: 0.12s;
-    }
-    .Navbar a:nth-child(2) {
-        animation-delay: 0.17s;
-    }
-    .Navbar a:nth-child(3) {
-        animation-delay: 0.22s;
-    }
-    .Navbar a:nth-child(4) {
-        animation-delay: 0.27s;
-    }
-    .Navbar a:nth-child(5) {
-        animation-delay: 0.32s;
-    }
+    .Navbar a:nth-child(1) { animation-delay: 0.12s; }
+    .Navbar a:nth-child(2) { animation-delay: 0.17s; }
+    .Navbar a:nth-child(3) { animation-delay: 0.22s; }
+    .Navbar a:nth-child(4) { animation-delay: 0.27s; }
+    .Navbar a:nth-child(5) { animation-delay: 0.32s; }
     .Navbar a::after {
         position: absolute;
         right: 18%;
@@ -1084,13 +1105,11 @@ section p {
     }
     .Navbar a i {
         transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        order: -1;
+        font-size: 1.1rem;
     }
     .Navbar a.active i {
         transform: translateY(-2px) scale(1.08);
-    }
-    .Navbar a i {
-        order: -1;
-        font-size: 1.1rem;
     }
     .search-box {
         grid-row: 2;
@@ -1131,7 +1150,6 @@ section p {
     }
 }
 
-/* Accessibility: respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .Navbar,
     .Navbar a,
@@ -1145,13 +1163,10 @@ section p {
     }
 }
 
-/* Navbar.jsx: extra-small phone refinements */
 @media (max-width: 360px) {
     .Navbar a {
         font-size: 0.75rem;
         padding-inline: 2px;
-    }
-    .Navbar a {
         gap: 4px;
     }
     .footer-intro,
@@ -1162,7 +1177,6 @@ section p {
     }
 }
 
-/* Navbar.jsx: desktop search field width */
 @media (min-width: 1025px) {
     .search-box {
         width: min(100%, 520px);
