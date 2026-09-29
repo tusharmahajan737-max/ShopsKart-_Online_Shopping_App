@@ -12,6 +12,7 @@ import Login from './Pages/Login'
 import Settings from './Pages/Settings'
 import { useContext } from 'react'
 import { ThemesContext } from './Components/ThemesContext'
+import Order from './Pages/Order'
 
 function App() {
   const { state } = useContext(ThemesContext);
@@ -32,6 +33,7 @@ function App() {
           <Route path='register' element={<Register />} />
           <Route path='password_help' element={<Password_Help />} />
           <Route path='settings' element={<Settings />} />
+          <Route path='your_order' element={<Order />} />
         </Routes>
       </BrowserRouter>
     </div>
