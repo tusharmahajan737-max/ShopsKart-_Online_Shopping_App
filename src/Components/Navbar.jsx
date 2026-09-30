@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function Navbar() {
+const Navbar = () => {
     return (
         <header className="header">
             <div className="brand">
@@ -21,3 +21,5 @@ export default function Navbar() {
         </header>
     );
 }
+
+export default Navbar;
