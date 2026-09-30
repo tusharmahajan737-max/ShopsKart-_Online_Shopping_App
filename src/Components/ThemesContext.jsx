@@ -13,7 +13,7 @@ function themeReducer(state, action) {
     }
 }
 
-export function ThemeProvider({ children }) {
+const ThemeProvider = ({ children }) => {
     const [state, dispatch] = useReducer(themeReducer, "light");
 
     return (
@@ -22,3 +22,5 @@ export function ThemeProvider({ children }) {
         </ThemesContext.Provider>
     );
 }
+
+export default ThemeProvider;
