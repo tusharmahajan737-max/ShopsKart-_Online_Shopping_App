@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export default function Account () {
+const Account = () => {
     return (
         <section className="account-page">
             <div className="container account-container">
@@ -39,28 +39,28 @@ export default function Account () {
 
                 <div className="row g-3 account-shortcuts">
                     <div className="col-12 col-sm-6 col-lg-3">
-                        <NavLink className="account-shortcut" to="/cart">
+                        <NavLink className="account-shortcut" to="/your_order">
                             <span className="account-shortcut-icon account-icon-blue"><i className="fa-solid fa-box-open" aria-hidden="true" /></span>
                             <span><strong>Your orders</strong><small>Track and manage purchases</small></span>
                             <i className="fa-solid fa-chevron-right account-chevron" aria-hidden="true" />
                         </NavLink>
                     </div>
                     <div className="col-12 col-sm-6 col-lg-3">
-                        <NavLink className="account-shortcut" to="/cart">
+                        <NavLink className="account-shortcut" to="/wishlist">
                             <span className="account-shortcut-icon account-icon-pink"><i className="fa-regular fa-heart" aria-hidden="true" /></span>
                             <span><strong>Wishlist</strong><small>Save items for later</small></span>
                             <i className="fa-solid fa-chevron-right account-chevron" aria-hidden="true" />
                         </NavLink>
                     </div>
                     <div className="col-12 col-sm-6 col-lg-3">
-                        <NavLink className="account-shortcut" to="/cart">
+                        <NavLink className="account-shortcut" to="/user_address">
                             <span className="account-shortcut-icon account-icon-green"><i className="fa-solid fa-location-dot" aria-hidden="true" /></span>
                             <span><strong>Saved addresses</strong><small>Speed up your checkout</small></span>
                             <i className="fa-solid fa-chevron-right account-chevron" aria-hidden="true" />
                         </NavLink>
                     </div>
                     <div className="col-12 col-sm-6 col-lg-3">
-                        <a className="account-shortcut" href="mailto:hello@shopkart.example">
+                        <a className="account-shortcut" to="/help_center">
                             <span className="account-shortcut-icon account-icon-orange"><i className="fa-solid fa-headset" aria-hidden="true" /></span>
                             <span><strong>Help centre</strong><small>We are here to help</small></span>
                             <i className="fa-solid fa-chevron-right account-chevron" aria-hidden="true" />
@@ -73,7 +73,7 @@ export default function Account () {
                         <div className="account-panel account-orders-panel">
                             <div className="account-panel-heading">
                                 <div><h2>Recent orders</h2><p>Your latest shopping activity</p></div>
-                                <NavLink to="/cart">View all</NavLink>
+                                <NavLink to="/your_order">View all</NavLink>
                             </div>
                             <div className="account-empty-state">
                                 <span className="account-empty-icon"><i className="fa-solid fa-receipt" aria-hidden="true" /></span>
@@ -98,3 +98,5 @@ export default function Account () {
         </section>
     );
 }
+
+export default Account;
