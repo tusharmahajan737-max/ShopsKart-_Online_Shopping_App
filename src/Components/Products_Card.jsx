@@ -1,4 +1,4 @@
-export default function Product_Card ({ title, price, image, category }) {
+const Product_Card = ({ title, price, image, category }) => {
     return (
         <div className="product-card-container">
             <div className="card product-card">
@@ -16,3 +16,5 @@ export default function Product_Card ({ title, price, image, category }) {
         </div>
     );
 }
+
+export default Product_Card;
