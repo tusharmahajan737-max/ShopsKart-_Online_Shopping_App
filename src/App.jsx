@@ -13,8 +13,11 @@ import Settings from './Pages/Settings'
 import { useContext } from 'react'
 import { ThemesContext } from './Components/ThemesContext'
 import Order from './Pages/Order'
+import Wishlist from './Pages/Wishlist'
+import User_Address from './Pages/User_Address'
+import Help_Center from './Pages/Help_Center'
 
-function App() {
+const App = () => {
   const { state } = useContext(ThemesContext);
 
   return (
@@ -34,6 +37,9 @@ function App() {
           <Route path='password_help' element={<Password_Help />} />
           <Route path='settings' element={<Settings />} />
           <Route path='your_order' element={<Order />} />
+          <Route path='wishlist' element={<Wishlist />} />
+          <Route path='user_address' element={<User_Address />} />
+          <Route path='help_center' element={<Help_Center />} />
         </Routes>
       </BrowserRouter>
     </div>
