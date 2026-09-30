@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Footer() {
+const Footer = () => {
     return (
         <footer className="site-footer">
             <div className="container footer-container">
@@ -54,3 +54,5 @@ export default function Footer() {
         </footer>
     )
 }
+
+export default Footer;
