@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { ThemesContext } from "../Components/ThemesContext";
 
-export default function Settings() {
+const Settings = () => {
     
     const { state, dispatch } = useContext(ThemesContext);
 
@@ -54,3 +54,5 @@ export default function Settings() {
         </section>
     );
 }
+
+export default Settings;
