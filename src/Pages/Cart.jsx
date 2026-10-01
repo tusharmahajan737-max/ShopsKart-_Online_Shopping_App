@@ -1,4 +1,4 @@
-export default function Cart() {
+const Cart = () => {
     return (
         <section className="container my-5 cart-page">
             <h1>Your Cart</h1>
@@ -6,3 +6,5 @@ export default function Cart() {
         </section>
     )
 }
+
+export default Cart;

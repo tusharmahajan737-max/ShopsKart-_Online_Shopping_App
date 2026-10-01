@@ -60,11 +60,11 @@ const Account = () => {
                         </NavLink>
                     </div>
                     <div className="col-12 col-sm-6 col-lg-3">
-                        <a className="account-shortcut" to="/help_center">
+                        <NavLink className="account-shortcut" to="/help_center">
                             <span className="account-shortcut-icon account-icon-orange"><i className="fa-solid fa-headset" aria-hidden="true" /></span>
                             <span><strong>Help centre</strong><small>We are here to help</small></span>
                             <i className="fa-solid fa-chevron-right account-chevron" aria-hidden="true" />
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
 
