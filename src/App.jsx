@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <div className={`app-container ${state}`}>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -31,15 +31,15 @@ const App = () => {
             <Route path="account" element={<Account />} />
             <Route path="cart" element={<Cart />} />
             <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path='settings' element={<Settings />} />
+            <Route path='your_order' element={<Order />} />
+            <Route path='wishlist' element={<Wishlist />} />
+            <Route path='user_address' element={<User_Address />} />
+            <Route path='help_center' element={<Help_Center />} />
           </Route>
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
           <Route path='password_help' element={<Password_Help />} />
-          <Route path='settings' element={<Settings />} />
-          <Route path='your_order' element={<Order />} />
-          <Route path='wishlist' element={<Wishlist />} />
-          <Route path='user_address' element={<User_Address />} />
-          <Route path='help_center' element={<Help_Center />} />
         </Routes>
       </BrowserRouter>
     </div>
