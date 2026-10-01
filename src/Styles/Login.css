@@ -4,8 +4,8 @@
 	place-items: center;
 	padding: 40px 20px;
 	background:
-		radial-gradient(circle at 10% 15%, rgba(255, 193, 7, 0.18), transparent 28%),
-		linear-gradient(135deg, #f8f5ff 0%, #fffaf0 100%);
+		radial-gradient(circle at 10% 15%, color-mix(in srgb, var(--purple) 12%, transparent), transparent 28%),
+		var(--bg-body);
 }
 
 .login-card {
@@ -13,10 +13,10 @@
 	grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.1fr);
 	width: min(920px, 100%);
 	overflow: hidden;
-	background: #ffffff;
-	border: 1px solid rgba(109, 40, 217, 0.12);
+	background: var(--bg-card);
+	border: 1px solid var(--line);
 	border-radius: 20px;
-	box-shadow: 0 24px 60px rgba(76, 29, 149, 0.16);
+	box-shadow: 0 24px 60px var(--shadow-card);
 	animation: login-card-enter 0.55s ease both;
 }
 
@@ -116,7 +116,7 @@
 
 .form-field label,
 .password-label-row a {
-	color: #241b35;
+	color: var(--ink);
 	font-size: 0.88rem;
 	font-weight: 700;
 }
@@ -130,7 +130,7 @@
 
 .password-label-row a,
 .login-signup a {
-	color: #6d28d9;
+	color: var(--purple-dark);
 	text-decoration: none;
 }
 
@@ -143,23 +143,23 @@
 	width: 100%;
 	min-height: 50px;
 	padding: 0 15px;
-	color: #241b35;
+	color: var(--ink);
 	font: inherit;
-	border: 1px solid #e8def4;
+	border: 1px solid var(--line);
 	border-radius: 10px;
 	outline: none;
-	background: #fdfbff;
+	background: var(--bg-input);
 	transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .form-field input::placeholder {
-	color: #9a91a6;
+	color: var(--muted);
 }
 
 .form-field input:focus {
-	border-color: #6d28d9;
-	background: #ffffff;
-	box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.12);
+	border-color: var(--purple);
+	background: var(--bg-card);
+	box-shadow: 0 0 0 4px color-mix(in srgb, var(--purple) 16%, transparent);
 }
 
 .password-input {
@@ -219,7 +219,7 @@
 	height: 40px;
 	padding: 0;
 	place-items: center;
-	color: #70677d;
+	color: var(--muted);
 	border: 0;
 	border-radius: 8px;
 	background: transparent;
@@ -229,8 +229,8 @@
 
 .password-toggle:hover,
 .password-toggle:focus-visible {
-	color: #6d28d9;
-	background: #f3e8ff;
+	color: var(--purple-dark);
+	background: var(--purple-soft);
 }
 
 .login-submit {
@@ -245,7 +245,7 @@
 	font-weight: 700;
 	border: 0;
 	border-radius: 10px;
-	background: #6d28d9;
+	background: var(--purple);
 	cursor: pointer;
 	box-shadow: 0 10px 18px rgba(109, 40, 217, 0.2);
 	transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
@@ -257,7 +257,7 @@
 }
 
 .login-submit:hover {
-	background: #4c1d95;
+	background: var(--purple-dark);
 	box-shadow: 0 14px 24px rgba(109, 40, 217, 0.28);
 	transform: translateY(-2px);
 }
@@ -285,7 +285,7 @@
 
 .login-signup {
 	margin: -4px 0 0;
-	color: #70677d;
+	color: var(--muted);
 	font-size: 0.88rem;
 	text-align: center;
 }
@@ -326,7 +326,7 @@
 	height: 32px;
 	padding: 0;
 	place-items: center;
-	color: #9a91a6;
+	color: var(--muted);
 	border: 0;
 	border-radius: 7px;
 	background: transparent;
@@ -337,8 +337,8 @@
 
 .register-password-toggle:hover,
 .register-password-toggle:focus-visible {
-	color: #6d28d9;
-	background: #f3e8ff;
+	color: var(--purple-dark);
+	background: var(--purple-soft);
 }
 
 .register-password-toggle:focus-visible {
@@ -351,7 +351,7 @@
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 9px;
-	color: #70677d;
+	color: var(--muted);
 	font-size: 0.82rem;
 	line-height: 1.4;
 	cursor: pointer;
@@ -362,7 +362,7 @@
 	height: 16px;
 	flex: 0 0 auto;
 	margin: 0;
-	accent-color: #6d28d9;
+	accent-color: var(--purple);
 }
 
 .register-terms input:focus-visible {
