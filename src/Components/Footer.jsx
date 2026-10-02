@@ -14,8 +14,8 @@ const Footer = () => {
                         <div className="footer-socials" aria-label="Social media links">
                             <a href="mailto:hello@shopkart.example" aria-label="Email ShopKart"><i className="fa-solid fa-envelope" aria-hidden="true"></i></a>
                             <a href="tel:+18005550199" aria-label="Call ShopKart"><i className="fa-solid fa-phone" aria-hidden="true"></i></a>
-                            <a href="/" aria-label="ShopKart on Instagram"><i className="fa-brands fa-instagram" aria-hidden="true"></i></a>
-                            <a href="/" aria-label="ShopKart on Facebook"><i className="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                            <Link to="/" aria-label="ShopKart on Instagram"><i className="fa-brands fa-instagram" aria-hidden="true"></i></Link>
+                            <Link to="/" aria-label="ShopKart on Facebook"><i className="fa-brands fa-facebook-f" aria-hidden="true"></i></Link>
                         </div>
                     </div>
 
