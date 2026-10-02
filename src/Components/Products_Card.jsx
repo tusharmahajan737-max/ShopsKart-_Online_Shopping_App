@@ -1,10 +1,16 @@
-const Product_Card = ({ title, price, image, category }) => {
+import { Link } from "react-router-dom";
+
+const Product_Card = ({ id, title, price, image, category }) => {
     return (
         <div className="product-card-container">
             <div className="card product-card">
-                <img className="card-img-top" src={image} alt="product" />
+                <Link to={`/show_product/${id}`} aria-label={`View ${title}`}>
+                    <img className="card-img-top" src={image} alt={title} />
+                </Link>
                 <div className="card-body">
-                    <h4 className="card-title">{title}</h4>
+                    <Link className="product-card-title-link" to={`/show_product/${id}`}>
+                        <h4 className="card-title">{title}</h4>
+                    </Link>
                     <p className="card-text">Rs. {price}</p>
                     <p className="card-text">{category}</p>
                     <div className="product-actions">
