@@ -61,7 +61,7 @@ const Login = () => {
                     <div className="form-field">
                         <div className="password-label-row">
                             <label htmlFor="login-password">Password</label>
-                            <a href="/password_help">Forgot password?</a>
+                            <Link to="/password_help">Forgot password?</Link>
                         </div>
                         <div className="password-input">
                             <input id="login-password" name="password" type={ShowPassword ? "text" : "password"} autoComplete="current-password"
@@ -89,7 +89,7 @@ const Login = () => {
                     {errors.checkbox && ( <p>{errors.checkbox.message}</p> )}
 
                     <button className="login-submit" type="submit">Login <span aria-hidden="true">→</span></button>
-                    <p className="login-signup">New to ShopsKart? <a href="/register">Create an account</a></p>
+                    <p className="login-signup">New to ShopsKart? <Link to="/register">Create an account</Link></p>
                 </form>
             </section>
         </main>
