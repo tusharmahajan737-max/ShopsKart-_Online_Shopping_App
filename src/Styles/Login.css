@@ -262,6 +262,18 @@
 	transform: translateY(-2px);
 }
 
+.password-help-page-shell {
+	padding: 32px 20px;
+}
+
+.password-help-card {
+	max-width: 920px;
+}
+
+.password-help-form {
+	justify-content: center;
+}
+
 .login-submit:disabled {
 	opacity: 0.65;
 	cursor: wait;
