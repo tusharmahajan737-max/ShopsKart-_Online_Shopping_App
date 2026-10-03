@@ -4,9 +4,9 @@ import Navbar from "./Navbar";
 
 const Layout = () => {
     return(
-        <div className="app-shell">
+        <div className="app-shell d-flex flex-column min-vh-100">
             <Navbar />
-            <main>
+            <main className="flex-grow-1">
                 <Outlet />
             </main>
             <Footer />
