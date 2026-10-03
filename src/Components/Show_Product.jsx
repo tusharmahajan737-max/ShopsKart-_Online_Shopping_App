@@ -84,8 +84,8 @@ const Show_Product = () => {
                     </div>
 
                     <div className="product-detail-actions">
-                        <button type="button">Add to cart</button>
-                        <Link to="/cart">Go to cart</Link>
+                        <button type="button">Add to Cart</button>
+                        <button type="button">Buy Now</button>                       
                     </div>
                     <Link className="back-to-products" to="/product">Back to products</Link>
                 </section>
