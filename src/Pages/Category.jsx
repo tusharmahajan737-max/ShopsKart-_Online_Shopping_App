@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import Products_Card from '../Components/Products_Card'
-import '../Styles/Category.css'
 
 const Category = () => {
     const [categories, setCategories] = useState([])
@@ -59,24 +58,24 @@ const Category = () => {
     }
 
     if (loadingCategories) {
-        return <main className="category-browser">Loading categories...</main>
+        return <main className="container py-4"><p className="alert alert-info mb-0">Loading categories...</p></main>
     }
 
     return (
-        <main className="category-browser">
-            <div className="category-heading">
-                <h1>Shop by category</h1>
-                <p>Choose a category to find the products you need.</p>
+        <main className="container py-4">
+            <div className="border-bottom pb-3">
+                <h1 className="h2 mb-1">Shop by category</h1>
+                <p className="text-body-secondary mb-0">Choose a category to find the products you need.</p>
             </div>
 
-            {error && <p className="category-message">{error}</p>}
+            {error && <p className="alert alert-danger mt-3">{error}</p>}
 
             {categories.length > 0 && (
                 <>
-                    <nav className="category-tabs" aria-label="Product categories">
+                    <nav className="nav nav-pills flex-nowrap gap-2 overflow-x-auto border-bottom py-3" aria-label="Product categories">
                         {categories.map((category) => (
                             <button
-                                className={selectedCategory === category ? 'selected' : ''}
+                                className={`btn btn-sm rounded-pill flex-shrink-0 ${selectedCategory === category ? 'btn-primary' : 'btn-outline-secondary'}`}
                                 key={category}
                                 onClick={() => setSelectedCategory(category)}
                                 type="button"
@@ -87,22 +86,22 @@ const Category = () => {
                         ))}
                     </nav>
 
-                    <section className="category-results" aria-live="polite">
-                        <div className="category-results-heading">
-                            <h2>{formatCategory(selectedCategory)}</h2>
+                    <section className="mt-4" aria-live="polite">
+                        <div className="d-flex flex-wrap gap-2 align-items-baseline justify-content-between">
+                            <h2 className="h4 mb-0">{formatCategory(selectedCategory)}</h2>
                             {!loadingProducts && !error && (
-                                <p>{products.length} products</p>
+                                <p className="small text-body-secondary mb-0">{products.length} products</p>
                             )}
                         </div>
 
-                        {loadingProducts && <p className="category-message">Loading products...</p>}
+                        {loadingProducts && <p className="alert alert-info mt-3">Loading products...</p>}
 
                         {!loadingProducts && !error && products.length === 0 && (
-                            <p className="category-message">No products found in this category.</p>
+                            <p className="alert alert-secondary mt-3">No products found in this category.</p>
                         )}
 
                         {!loadingProducts && products.length > 0 && (
-                            <div className="Products category-products">
+                            <div className="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3 g-lg-4 mt-1 justify-content-center">
                                 {products.map((product) => (
                                     <Products_Card
                                         key={product.id}
