@@ -1,9 +1,9 @@
-import { Outlet } from "react-router-dom";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import { Outlet } from 'react-router-dom';
+import Footer from './Footer';
+import Navbar from './Navbar';
 
 const Layout = () => {
-    return(
+    return (
         <div className="app-shell d-flex flex-column min-vh-100">
             <Navbar />
             <main className="flex-grow-1">
@@ -12,6 +12,6 @@ const Layout = () => {
             <Footer />
         </div>
     );
-}
+};
 
 export default Layout;
