@@ -1,47 +1,59 @@
-import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
 const Show_Product = () => {
-    const { id } = useParams()
-    const [product, setProduct] = useState(null)
-    const [error, setError] = useState('')
+    const { id } = useParams();
+    const [product, setProduct] = useState(null);
+    const [error, setError] = useState('');
 
     useEffect(() => {
-        setProduct(null)
-        setError('')
+        setProduct(null);
+        setError('');
 
         fetch(`https://dummyjson.com/products/${id}`)
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Product not found')
+                    throw new Error('Product not found');
                 }
 
-                return response.json()
+                return response.json();
             })
             .then((data) => setProduct(data))
-            .catch((fetchError) => setError(fetchError.message))
-    }, [id])
+            .catch((fetchError) => setError(fetchError.message));
+    }, [id]);
 
     if (error) {
         return (
             <main className="container my-5 text-center">
                 <p className="alert alert-danger">{error}</p>
-                <Link className="btn btn-primary" to="/product">Back to products</Link>
+                <Link className="btn btn-primary" to="/product">
+                    Back to products
+                </Link>
             </main>
-        )
+        );
     }
 
     if (product === null) {
-        return <main className="container my-5"><p className="alert alert-info">Loading product...</p></main>
+        return (
+            <main className="container my-5">
+                <p className="alert alert-info">Loading product...</p>
+            </main>
+        );
     }
 
     return (
         <main className="container product-detail-page my-4 my-lg-5">
             <nav aria-label="Breadcrumb">
                 <ol className="breadcrumb small">
-                    <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-                    <li className="breadcrumb-item"><Link to="/product">Products</Link></li>
-                    <li className="breadcrumb-item active text-capitalize" aria-current="page">{product.category}</li>
+                    <li className="breadcrumb-item">
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li className="breadcrumb-item">
+                        <Link to="/product">Products</Link>
+                    </li>
+                    <li className="breadcrumb-item active text-capitalize" aria-current="page">
+                        {product.category}
+                    </li>
                 </ol>
             </nav>
 
@@ -83,14 +95,20 @@ const Show_Product = () => {
                     </div>
 
                     <div className="d-grid d-sm-flex gap-2 my-3">
-                        <button className="btn btn-primary flex-fill" type="button">Add to Cart</button>
-                        <button className="btn btn-outline-primary flex-fill" type="button">Buy Now</button>
+                        <button className="btn btn-primary flex-fill" type="button">
+                            Add to Cart
+                        </button>
+                        <button className="btn btn-outline-primary flex-fill" type="button">
+                            Buy Now
+                        </button>
                     </div>
-                    <Link className="link-primary text-decoration-none" to="/product">Back to products</Link>
+                    <Link className="link-primary text-decoration-none" to="/product">
+                        Back to products
+                    </Link>
                 </section>
             </div>
         </main>
-    )
-}
+    );
+};
 
-export default Show_Product
+export default Show_Product;
