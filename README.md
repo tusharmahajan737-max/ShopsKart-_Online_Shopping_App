@@ -40,6 +40,7 @@ Users can navigate through different pages, explore products, add products to th
 # ✨ Features
 
 ### 🏠 Home Page
+
 - Attractive shopping homepage
 - Navigation bar
 - Search box
@@ -48,6 +49,7 @@ Users can navigate through different pages, explore products, add products to th
 - Responsive layout
 
 ### 🛍️ Product Page
+
 - Display available products
 - Product cards
 - Product image
@@ -58,11 +60,13 @@ Users can navigate through different pages, explore products, add products to th
 - Buy Now option
 
 ### 📦 Category Page
+
 - Browse products by category
 - Category-based product display
 - Easy product navigation
 
 ### 🛒 Shopping Cart
+
 - View selected products
 - Add products to cart
 - Remove products
@@ -70,11 +74,13 @@ Users can navigate through different pages, explore products, add products to th
 - View cart information
 
 ### 👤 Account
+
 - User account page
 - User information
 - Account-related options
 
 ### 🔐 Login
+
 - User login form
 - Email validation
 - Password validation
@@ -83,6 +89,7 @@ Users can navigate through different pages, explore products, add products to th
 - Navigation after successful login
 
 ### 📝 Register
+
 - New user registration
 - Name validation
 - Email validation
@@ -91,10 +98,12 @@ Users can navigate through different pages, explore products, add products to th
 - Form validation
 
 ### 🔑 Password Help
+
 - Password recovery/help page
 - Email-based form interface
 
 ### ⚙️ Settings
+
 - Application settings
 - Dark Mode
 - Light Mode
@@ -105,21 +114,21 @@ Users can navigate through different pages, explore products, add products to th
 
 # 🛠️ Technologies Used
 
-| Technology | Purpose |
-|---|---|
-| React.js | Frontend development |
-| Vite | React development/build tool |
-| React Router DOM | Page navigation and routing |
-| React Hook Form | Form handling and validation |
-| JavaScript | Application logic |
-| HTML5 | Page structure |
-| CSS3 | Styling |
-| Bootstrap 5 | Responsive UI |
-| Font Awesome | Icons |
-| Local Storage | Storing browser-side data |
-| Git | Version control |
-| GitHub | Source code hosting |
-| GitHub Pages | Website deployment |
+| Technology       | Purpose                      |
+| ---------------- | ---------------------------- |
+| React.js         | Frontend development         |
+| Vite             | React development/build tool |
+| React Router DOM | Page navigation and routing  |
+| React Hook Form  | Form handling and validation |
+| JavaScript       | Application logic            |
+| HTML5            | Page structure               |
+| CSS3             | Styling                      |
+| Bootstrap 5      | Responsive UI                |
+| Font Awesome     | Icons                        |
+| Local Storage    | Storing browser-side data    |
+| Git              | Version control              |
+| GitHub           | Source code hosting          |
+| GitHub Pages     | Website deployment           |
 
 ---
 
@@ -356,3 +365,4 @@ GitHub Pages
     │
     ▼
 Live ShopsKart Website
+```
