@@ -1,13 +1,12 @@
-import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { ThemesContext } from "../Components/ThemesContext";
+import { useContext, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { ThemesContext } from '../Components/ThemesContext';
 
 const Settings = () => {
-
     const { state, dispatch } = useContext(ThemesContext);
 
     const handleThemeChange = (e) => {
-        dispatch({ type: "setTheme", payload: e.target.value });
+        dispatch({ type: 'setTheme', payload: e.target.value });
     };
 
     const [notifications, setNotifications] = useState({
@@ -31,7 +30,8 @@ const Settings = () => {
                         <p>Manage your account preferences and shopping experience.</p>
                     </div>
                     <NavLink className="account-shop-link" to="/account">
-                        <i className="fa-solid fa-arrow-left" aria-hidden="true" />Back to account
+                        <i className="fa-solid fa-arrow-left" aria-hidden="true" />
+                        Back to account
                     </NavLink>
                 </div>
 
@@ -44,7 +44,9 @@ const Settings = () => {
                         <i className="fa-solid fa-circle-half-stroke settings-panel-icon" aria-hidden="true" />
                     </div>
                     <div className="theme-select row align-items-center g-3 mt-3">
-                        <label className="col-12 col-md-7 fw-semibold" htmlFor="theme">Color theme</label>
+                        <label className="col-12 col-md-7 fw-semibold" htmlFor="theme">
+                            Color theme
+                        </label>
                         <div className="col-12 col-md-5">
                             <select id="theme" value={state} onChange={handleThemeChange} className="form-select theme-select-control">
                                 <option value="light">Light mode</option>
@@ -65,7 +67,9 @@ const Settings = () => {
 
                     <div className="settings-notification-list">
                         <div className="row align-items-center g-3 py-3 settings-notification-row border-bottom">
-                            <div className="col-auto"><i className="fa-solid fa-box settings-notification-icon" aria-hidden="true" /></div>
+                            <div className="col-auto">
+                                <i className="fa-solid fa-box settings-notification-icon" aria-hidden="true" />
+                            </div>
                             <div className="col">
                                 <label className="settings-notification-label d-grid gap-1" htmlFor="notify-orders">
                                     <span>Order Updates</span>
@@ -74,13 +78,22 @@ const Settings = () => {
                             </div>
                             <div className="col-auto">
                                 <div className="form-check form-switch m-0">
-                                    <input className="form-check-input" type="checkbox" role="switch" id="notify-orders" checked={notifications.orders} onChange={() => toggleNotification("orders")} />
+                                    <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        role="switch"
+                                        id="notify-orders"
+                                        checked={notifications.orders}
+                                        onChange={() => toggleNotification('orders')}
+                                    />
                                 </div>
                             </div>
                         </div>
 
                         <div className="row align-items-center g-3 py-3 settings-notification-row border-bottom">
-                            <div className="col-auto"><i className="fa-solid fa-tag settings-notification-icon" aria-hidden="true" /></div>
+                            <div className="col-auto">
+                                <i className="fa-solid fa-tag settings-notification-icon" aria-hidden="true" />
+                            </div>
                             <div className="col">
                                 <label className="settings-notification-label d-grid gap-1" htmlFor="notify-offers">
                                     <span>Offers &amp; Discounts</span>
@@ -89,13 +102,22 @@ const Settings = () => {
                             </div>
                             <div className="col-auto">
                                 <div className="form-check form-switch m-0">
-                                    <input className="form-check-input" type="checkbox" role="switch" id="notify-offers" checked={notifications.offers} onChange={() => toggleNotification("offers")} />
+                                    <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        role="switch"
+                                        id="notify-offers"
+                                        checked={notifications.offers}
+                                        onChange={() => toggleNotification('offers')}
+                                    />
                                 </div>
                             </div>
                         </div>
 
                         <div className="row align-items-center g-3 py-3 settings-notification-row border-bottom">
-                            <div className="col-auto"><i className="fa-solid fa-star settings-notification-icon" aria-hidden="true" /></div>
+                            <div className="col-auto">
+                                <i className="fa-solid fa-star settings-notification-icon" aria-hidden="true" />
+                            </div>
                             <div className="col">
                                 <label className="settings-notification-label d-grid gap-1" htmlFor="notify-recommendations">
                                     <span>Product Recommendations</span>
@@ -104,13 +126,22 @@ const Settings = () => {
                             </div>
                             <div className="col-auto">
                                 <div className="form-check form-switch m-0">
-                                    <input className="form-check-input" type="checkbox" role="switch" id="notify-recommendations" checked={notifications.recommendations} onChange={() => toggleNotification("recommendations")} />
+                                    <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        role="switch"
+                                        id="notify-recommendations"
+                                        checked={notifications.recommendations}
+                                        onChange={() => toggleNotification('recommendations')}
+                                    />
                                 </div>
                             </div>
                         </div>
 
                         <div className="row align-items-center g-3 py-3 settings-notification-row">
-                            <div className="col-auto"><i className="fa-solid fa-envelope settings-notification-icon" aria-hidden="true" /></div>
+                            <div className="col-auto">
+                                <i className="fa-solid fa-envelope settings-notification-icon" aria-hidden="true" />
+                            </div>
                             <div className="col">
                                 <label className="settings-notification-label d-grid gap-1" htmlFor="notify-newsletters">
                                     <span>Newsletters</span>
@@ -119,16 +150,22 @@ const Settings = () => {
                             </div>
                             <div className="col-auto">
                                 <div className="form-check form-switch m-0">
-                                    <input className="form-check-input" type="checkbox" role="switch" id="notify-newsletters" checked={notifications.newsletters} onChange={() => toggleNotification("newsletters")} />
+                                    <input
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        role="switch"
+                                        id="notify-newsletters"
+                                        checked={notifications.newsletters}
+                                        onChange={() => toggleNotification('newsletters')}
+                                    />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     );
-}
+};
 
 export default Settings;
