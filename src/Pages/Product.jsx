@@ -1,21 +1,18 @@
-import { useEffect, useState } from "react";
-import Products_Card from "../Components/Products_Card";
+import { useEffect, useState } from 'react';
+import Products_Card from '../Components/Products_Card';
 
 const Product = () => {
-
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-
-        fetch("https://dummyjson.com/products?limit=100&skip=100")
+        fetch('https://dummyjson.com/products?limit=100&skip=100')
             .then((response) => response.json())
             .then((data) => {
                 setProducts(data.products);
             })
             .catch((error) => {
-                console.error("Error fetching products:", error);
+                console.error('Error fetching products:', error);
             });
-
     }, []);
 
     return (
