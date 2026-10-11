@@ -1,64 +1,68 @@
-import { useEffect, useState } from 'react'
-import Products_Card from '../Components/Products_Card'
+import { useEffect, useState } from 'react';
+import Products_Card from '../Components/Products_Card';
 
 const Category = () => {
-    const [categories, setCategories] = useState([])
-    const [selectedCategory, setSelectedCategory] = useState('')
-    const [products, setProducts] = useState([])
-    const [loadingCategories, setLoadingCategories] = useState(true)
-    const [loadingProducts, setLoadingProducts] = useState(false)
-    const [error, setError] = useState('')
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [products, setProducts] = useState([]);
+    const [loadingCategories, setLoadingCategories] = useState(true);
+    const [loadingProducts, setLoadingProducts] = useState(false);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         fetch('https://dummyjson.com/products/category-list')
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Could not load categories.')
+                    throw new Error('Could not load categories.');
                 }
 
-                return response.json()
+                return response.json();
             })
             .then((data) => {
-                setCategories(data)
+                setCategories(data);
                 if (data.length > 0) {
-                    setSelectedCategory(data[0])
+                    setSelectedCategory(data[0]);
                 }
             })
             .catch((fetchError) => setError(fetchError.message))
-            .finally(() => setLoadingCategories(false))
-    }, [])
+            .finally(() => setLoadingCategories(false));
+    }, []);
 
     useEffect(() => {
         if (selectedCategory === '') {
-            return
+            return;
         }
 
-        setProducts([])
-        setError('')
-        setLoadingProducts(true)
+        setProducts([]);
+        setError('');
+        setLoadingProducts(true);
 
         fetch(`https://dummyjson.com/products/category/${selectedCategory}`)
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error('Could not load products.')
+                    throw new Error('Could not load products.');
                 }
 
-                return response.json()
+                return response.json();
             })
             .then((data) => setProducts(data.products))
             .catch((fetchError) => setError(fetchError.message))
-            .finally(() => setLoadingProducts(false))
-    }, [selectedCategory])
+            .finally(() => setLoadingProducts(false));
+    }, [selectedCategory]);
 
     const formatCategory = (category) => {
         return category
             .split('-')
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ')
-    }
+            .join(' ');
+    };
 
     if (loadingCategories) {
-        return <main className="container py-4"><p className="alert alert-info mb-0">Loading categories...</p></main>
+        return (
+            <main className="container py-4">
+                <p className="alert alert-info mb-0">Loading categories...</p>
+            </main>
+        );
     }
 
     return (
@@ -79,8 +83,7 @@ const Category = () => {
                                 key={category}
                                 onClick={() => setSelectedCategory(category)}
                                 type="button"
-                                aria-pressed={selectedCategory === category}
-                            >
+                                aria-pressed={selectedCategory === category}>
                                 {formatCategory(category)}
                             </button>
                         ))}
@@ -89,9 +92,7 @@ const Category = () => {
                     <section className="mt-4" aria-live="polite">
                         <div className="d-flex flex-wrap gap-2 align-items-baseline justify-content-between">
                             <h2 className="h4 mb-0">{formatCategory(selectedCategory)}</h2>
-                            {!loadingProducts && !error && (
-                                <p className="small text-body-secondary mb-0">{products.length} products</p>
-                            )}
+                            {!loadingProducts && !error && <p className="small text-body-secondary mb-0">{products.length} products</p>}
                         </div>
 
                         {loadingProducts && <p className="alert alert-info mt-3">Loading products...</p>}
@@ -119,6 +120,6 @@ const Category = () => {
             )}
         </main>
     );
-}
+};
 
 export default Category;
