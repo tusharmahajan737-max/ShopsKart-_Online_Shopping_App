@@ -1,14 +1,26 @@
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../Context/CartContext';
 
 const Cart = () => {
-    const { cart, increaseQuantity, decreaseQuantity } = useCart();
+    const { cart, increaseQuantity, decreaseQuantity, removeFromCart, buyCartItem, placeOrder } = useCart();
+    const navigate = useNavigate();
 
     const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
     const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
     const handleOrderNow = () => {
-        alert('Order placed successfully');
+        const order = placeOrder();
+        if (order) {
+            navigate('/your_order', { state: { placedOrderId: order.id } });
+        }
+    };
+
+    const handleBuyItem = (itemId) => {
+        const order = buyCartItem(itemId);
+        if (order) {
+            navigate('/your_order', { state: { placedOrderId: order.id } });
+        }
     };
 
     return (
@@ -37,17 +49,31 @@ const Cart = () => {
                                         <th scope="col" className="text-end">
                                             Price
                                         </th>
+                                        <th scope="col" className="text-center">
+                                            Actions
+                                        </th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     {cart.map((item) => (
                                         <tr key={item.id}>
-                                            <td className="fw-semibold">{item.title}</td>
-                                            <td className="text-center">
+                                            <td>
+                                                <div className="cart-product-cell">
+                                                    {item.image ? (
+                                                        <img className="cart-product-image" src={item.image} alt={item.title} />
+                                                    ) : (
+                                                        <span className="cart-product-image-placeholder" aria-hidden="true">
+                                                            <i className="fa-regular fa-image" />
+                                                        </span>
+                                                    )}
+                                                    <span className="fw-semibold">{item.title}</span>
+                                                </div>
+                                            </td>
+                                            <td className="text-center" data-label="Quantity">
                                                 <div className="d-inline-flex align-items-center justify-content-center gap-2 cart-quantity-box">
                                                     <button
-                                                        className="btn btn-outline-danger btn-sm cart-qty-btn"
+                                                        className="btn btn-sm cart-qty-btn"
                                                         type="button"
                                                         onClick={() => decreaseQuantity(item.id)}
                                                         aria-label={`Decrease quantity for ${item.title}`}>
@@ -55,7 +81,7 @@ const Cart = () => {
                                                     </button>
                                                     <span className="fw-semibold cart-quantity-value">{item.quantity}</span>
                                                     <button
-                                                        className="btn btn-outline-danger btn-sm cart-qty-btn"
+                                                        className="btn btn-sm cart-qty-btn"
                                                         type="button"
                                                         onClick={() => increaseQuantity(item.id)}
                                                         aria-label={`Increase quantity for ${item.title}`}>
@@ -63,7 +89,29 @@ const Cart = () => {
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td className="text-end fw-semibold">Rs. {item.price * item.quantity}</td>
+                                            <td className="text-end fw-semibold" data-label="Subtotal">
+                                                Rs. {item.price * item.quantity}
+                                            </td>
+                                            <td className="text-center">
+                                                <div className="cart-item-actions d-inline-flex flex-wrap justify-content-center gap-2">
+                                                    <button
+                                                        className="btn btn-sm cart-remove-button"
+                                                        type="button"
+                                                        onClick={() => removeFromCart(item.id)}
+                                                        aria-label={`Remove ${item.title} from cart`}>
+                                                        <i className="fa-solid fa-trash-can me-1" aria-hidden="true" />
+                                                        Remove
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-sm cart-buy-button"
+                                                        type="button"
+                                                        onClick={() => handleBuyItem(item.id)}
+                                                        aria-label={`Buy ${item.title} separately`}>
+                                                        <i className="fa-solid fa-bag-shopping me-1" aria-hidden="true" />
+                                                        Buy now
+                                                    </button>
+                                                </div>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -88,7 +136,7 @@ const Cart = () => {
                                     <span className="fw-bold text-primary">Rs. {totalAmount}</span>
                                 </div>
                                 <button className="btn btn-primary w-100 mt-2" type="button" onClick={handleOrderNow}>
-                                    Order Now
+                                    Place order
                                 </button>
                             </div>
                         </div>
