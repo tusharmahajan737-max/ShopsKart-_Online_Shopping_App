@@ -1,10 +1,24 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useCart } from '../Context/CartContext';
 
 const Show_Product = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
+    const { addToCart, buyNow } = useCart();
     const [product, setProduct] = useState(null);
     const [error, setError] = useState('');
+
+    const handleAddToCart = () => {
+        addToCart({ id: product.id, title: product.title, price: product.price, image: product.thumbnail });
+    };
+
+    const handleBuyNow = () => {
+        const order = buyNow({ id: product.id, title: product.title, price: product.price, image: product.thumbnail });
+        if (order) {
+            navigate('/your_order', { state: { placedOrderId: order.id } });
+        }
+    };
 
     useEffect(() => {
         setProduct(null);
@@ -95,10 +109,10 @@ const Show_Product = () => {
                     </div>
 
                     <div className="d-grid d-sm-flex gap-2 my-3">
-                        <button className="btn btn-primary flex-fill" type="button">
+                        <button className="btn btn-primary flex-fill" type="button" onClick={handleAddToCart}>
                             Add to Cart
                         </button>
-                        <button className="btn btn-outline-primary flex-fill" type="button">
+                        <button className="btn btn-outline-primary flex-fill" type="button" onClick={handleBuyNow}>
                             Buy Now
                         </button>
                     </div>
