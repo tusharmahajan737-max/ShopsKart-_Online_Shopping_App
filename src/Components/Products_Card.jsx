@@ -9,6 +9,7 @@ const Product_Card = ({ id, title, price, image, category }) => {
             id,
             title,
             price,
+            image,
         });
     };
 
